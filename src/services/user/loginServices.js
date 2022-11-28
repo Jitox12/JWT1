@@ -1,12 +1,13 @@
 const {matchedData} = require('express-validator')
-const {tokenSign} = require('../../../../utils/handleJwt')
-const {handleHttpError} = require('../../../../utils/handleError')
-const {mongoUser} = require('../../models/index')
+const {tokenSign} = require('../../utils/handleJwt')
+const {handleHttpError} = require('../../utils/handleError')
+const User = require('../../entities/user')
+const {compare} = require('../../utils/handlePassword')
 
-const login = async (req, res)=> {
+const loginServices = async (req,res) => {
     try{
         req = matchedData(req)
-        const user = await mongoUser.findOne({email:req.email}).select('password name role email')
+        const user = await User.findOne({email:req.email}).select('password name role email')
         if(!user){
             handleHttpError(res,'USER_NOT_EXISTS',404)
             return
@@ -17,15 +18,13 @@ const login = async (req, res)=> {
             handleHttpError(res, 'PASSWORD_INVALID', 401)
             return
         }
-
         user.set('password',undefined,{strict: false})
 
         const data = {
             token:tokenSign(user),
             user
         }
-        res.send(data)
-
+        return data
 
     }catch(err){
         console.log(err)
@@ -33,4 +32,4 @@ const login = async (req, res)=> {
     }
 }
 
-module.exports = login
+module.exports = loginServices

@@ -4,7 +4,7 @@ require('dotenv').config({path:'./src/config/.env'})
 
 const API_VERSION = process.env.API_VERSION
 
-const userRoutes = require('../components/user/routes')
+const userRoutes = require('./user')
 
 router.use(`/api/${API_VERSION}`, userRoutes)
 

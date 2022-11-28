@@ -1,6 +1,6 @@
 const { verifyToken} = require('../utils/handleJwt')
 const {handleHttpError} = require('../utils/handleError')
-const {mongoUser} = require('../components/user/models')
+const {mongoUser} = require('../entities/user')
 
 const authMiddleware = async (req,res, next) => {
 

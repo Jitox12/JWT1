@@ -24,7 +24,5 @@ const UserSchema = new mongoose.Schema(
         versionKey:false
     }
 )
-
 UserSchema.plugin(mongooseDelete, {overrideMethods:'all'})
-
 module.exports = mongoose.model('users', UserSchema)

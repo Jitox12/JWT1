@@ -10,11 +10,11 @@ const sign =  jwt.sign(
     },
     JWT_SECRET,
     {
-        expiresIn:'2h'
+        expiresIn:'1h'
     }
-    
 )
 return sign
+
 }
 
 const verifyToken = async (tokenJwt) => {
@@ -24,7 +24,6 @@ const verifyToken = async (tokenJwt) => {
         return null
     }
 }
-
 
 module.exports = {
     tokenSign,
