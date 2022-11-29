@@ -11,7 +11,7 @@ const loginServices = async (req,res) => {
         if(!user){
             handleHttpError(res,'USER_NOT_EXISTS',404)
             return
-        }
+        }   
         const hashPassword = user.get('password')
         const check = await compare(req.password, hashPassword)
         if(!check){

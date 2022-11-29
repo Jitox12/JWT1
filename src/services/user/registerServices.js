@@ -19,6 +19,7 @@ const register = async (req,res) => {
     return data
     
     }catch(err){
+        console.log(err)
         handleHttpError(res,'ERROR_REGISTER_USER')
     }
 }

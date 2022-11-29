@@ -1,4 +1,4 @@
-const handleHttpError= (res, message = 'Algo sucedio', code = 403) => {
+const handleHttpError= (res, message = 'DATA BASE ERROR', code = 505) => {
     res.status(code).send({error:message})
 }
 

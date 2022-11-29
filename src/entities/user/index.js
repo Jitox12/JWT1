@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const mongooseDelete = require('mongoose-delete')
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const UserSchema = new mongoose.Schema(
     {
@@ -8,7 +9,6 @@ const UserSchema = new mongoose.Schema(
         },
         email:{
             type:String,
-            unique:true
         },
         password:{
             type:String,
@@ -24,5 +24,8 @@ const UserSchema = new mongoose.Schema(
         versionKey:false
     }
 )
+
 UserSchema.plugin(mongooseDelete, {overrideMethods:'all'})
-module.exports = mongoose.model('users', UserSchema)
+UserSchema.plugin(mongoosePaginate);
+
+module.exports= mongoose.model('users', UserSchema)
