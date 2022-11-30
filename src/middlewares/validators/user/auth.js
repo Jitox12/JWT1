@@ -39,7 +39,7 @@ const validatorGetUser = [
     .isNumeric(),
     check('page')
     .default(1)
-    .isNumeric(),
+    .isNumeric(),   
     (req,res,next)=>{
         validateResults(req,res,next)
     }

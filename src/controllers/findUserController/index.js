@@ -7,7 +7,7 @@ async function findUser (req,res){
         res.send({data})
 
     }catch(err){
-        handleHttpError('ERROR')
+        handleHttpError(res,'ERROR',505)
     }
 }
 
