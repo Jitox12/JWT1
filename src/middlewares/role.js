@@ -10,7 +10,6 @@ const checkRole = (role) => (req,res,next) => {
         handleHttpError(res, "USER_NOT_PERMISSIONS", 403)
         return
     }
-
     next()
   }catch(err){
     handleHttpError(res, 'ERROR_PERMISSIONS', 403)

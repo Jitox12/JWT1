@@ -1,16 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const {validatorLogin, validatorRegister, validatorGetUser}= require('../../middlewares/validators/user/auth')
-const {authMongoValidator} = require('../../middlewares/validators/user/authMongo')
 const {authMiddleware} = require('../../middlewares/session')
-const {login} = require('../../controllers/loginController')
-const {register} = require('../../controllers/registerController')
-const {findUser} = require ('../../controllers/findUserController')
+const loginServices = require('../../services/user/loginServices')
+const registerServices = require('../../services/user/registerServices')
+const findUserServices = require ('../../services/user/findUserServices')
 const {checkRole} = require('../../middlewares/role')
 
-router.post('/register', [validatorRegister,authMongoValidator], register )
-router.post('/login',[validatorLogin], login)
+router.post('/register', [validatorRegister], registerServices )
+router.post('/login',[validatorLogin], loginServices)
 
-router.get('/find-user',[validatorGetUser,authMiddleware,checkRole(['admin'])], findUser)
+router.get('/find-user',[validatorGetUser,authMiddleware,checkRole(['admin'])], findUserServices)
 
 module.exports = router
